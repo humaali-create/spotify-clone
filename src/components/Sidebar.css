@@ -48,14 +48,19 @@
 }
 
 .sidebar-playlist {
+  border-radius: 4px;
+}
+
+.sidebar-playlist-link {
+  display: block;
   padding: 8px 12px;
   border-radius: 4px;
   color: var(--text-muted);
   font-size: 14px;
-  cursor: default;
 }
 
-.sidebar-playlist:hover {
+.sidebar-playlist-link:hover,
+.sidebar-playlist-link.active {
   background: var(--surface-hover);
   color: var(--text);
 }

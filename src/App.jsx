@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import Sidebar from './components/Sidebar.jsx'
 import PlayerBar from './components/PlayerBar.jsx'
 import Home from './pages/Home.jsx'
-import PlaylistDetail from './pages/PlaylistDetail.jsx'
+import PlaylistPage from './pages/PlaylistPage.jsx'
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/playlist/:id" element={<PlaylistDetail />} />
+          <Route path="/playlist/:playlistId" element={<PlaylistPage />} />
         </Routes>
       </main>
       <PlayerBar />
