@@ -1,0 +1,11 @@
+.page-heading {
+  font-size: 28px;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.playlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
