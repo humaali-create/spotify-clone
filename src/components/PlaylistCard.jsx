@@ -7,6 +7,7 @@ function PlaylistCard({ playlist }) {
   return (
     <Link to={`/playlist/${playlist.id}`} className="playlist-card">
       <div className="playlist-cover" style={{ background: gradient }} />
+      <span className="playlist-category">{playlist.category}</span>
       <h3 className="playlist-name">{playlist.name}</h3>
       <p className="playlist-description">{playlist.description}</p>
     </Link>
