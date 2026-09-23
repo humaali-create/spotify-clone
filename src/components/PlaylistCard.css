@@ -1,8 +1,9 @@
 .playlist-card {
+  display: block;
   background: var(--card);
   border-radius: var(--radius);
   padding: 16px;
-  cursor: default;
+  cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
