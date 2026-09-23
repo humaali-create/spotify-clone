@@ -3,12 +3,15 @@ import PlaylistCard from '../components/PlaylistCard.jsx'
 import { playlists } from '../data/mockData.js'
 import './Home.css'
 
+const categories = [...new Set(playlists.map((playlist) => playlist.category))]
+
 function Home() {
   const [query, setQuery] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState(null)
 
-  const filteredPlaylists = playlists.filter((playlist) =>
-    playlist.name.toLowerCase().includes(query.toLowerCase()),
-  )
+  const filteredPlaylists = playlists
+    .filter((playlist) => playlist.name.toLowerCase().includes(query.toLowerCase()))
+    .filter((playlist) => !selectedCategory || playlist.category === selectedCategory)
 
   return (
     <section>
@@ -20,6 +23,25 @@ function Home() {
         value={query}
         onChange={(event) => setQuery(event.target.value)}
       />
+      <div className="category-filters">
+        <button
+          type="button"
+          className={`category-pill${selectedCategory === null ? ' active' : ''}`}
+          onClick={() => setSelectedCategory(null)}
+        >
+          All
+        </button>
+        {categories.map((category) => (
+          <button
+            key={category}
+            type="button"
+            className={`category-pill${selectedCategory === category ? ' active' : ''}`}
+            onClick={() => setSelectedCategory(category)}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
       <div className="playlist-grid">
         {filteredPlaylists.map((playlist) => (
           <PlaylistCard key={playlist.id} playlist={playlist} />
