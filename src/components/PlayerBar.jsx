@@ -8,23 +8,34 @@ function PlayerBar() {
         <div className="player-cover" aria-hidden="true" />
         <div className="player-track-info">
           <span className="player-track-name">No track selected</span>
-          <span className="player-track-artist">—</span>
+          <span className="player-track-artist">Choose a playlist to start listening.</span>
         </div>
       </div>
 
-      <div className="player-controls">
-        <button type="button" className="player-btn" disabled>
-          ⏮
-        </button>
-        <button type="button" className="player-btn player-btn-play" disabled>
-          ▶
-        </button>
-        <button type="button" className="player-btn" disabled>
-          ⏭
-        </button>
+      <div className="player-center">
+        <div className="player-controls">
+          <button type="button" className="player-btn" aria-label="Previous" disabled>
+            ⏮
+          </button>
+          <button type="button" className="player-btn player-btn-play" aria-label="Play" disabled>
+            ▶
+          </button>
+          <button type="button" className="player-btn" aria-label="Next" disabled>
+            ⏭
+          </button>
+        </div>
+        <div className="player-progress" aria-hidden="true">
+          <div className="player-progress-track">
+            <div className="player-progress-fill" />
+          </div>
+        </div>
       </div>
 
-      <div className="player-extras" />
+      <div className="player-extras" aria-hidden="true">
+        <div className="player-volume-track">
+          <div className="player-volume-fill" />
+        </div>
+      </div>
     </footer>
   )
 }
