@@ -41,6 +41,19 @@ function Home() {
             {category}
           </button>
         ))}
+        {(query !== '' || selectedCategory !== null) && (
+          <button
+            type="button"
+            className="clear-filters-button"
+            aria-label="Clear all search and category filters"
+            onClick={() => {
+              setQuery('')
+              setSelectedCategory(null)
+            }}
+          >
+            Clear all
+          </button>
+        )}
       </div>
       {filteredPlaylists.length > 0 ? (
         <div className="playlist-grid">
