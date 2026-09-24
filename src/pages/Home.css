@@ -58,3 +58,20 @@
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 20px;
 }
+
+.playlist-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.playlist-empty-title {
+  font-size: 16px;
+  color: var(--text);
+}
+
+.playlist-empty-text {
+  font-size: 14px;
+  color: var(--text-muted);
+}

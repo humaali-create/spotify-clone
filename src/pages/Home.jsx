@@ -42,11 +42,18 @@ function Home() {
           </button>
         ))}
       </div>
-      <div className="playlist-grid">
-        {filteredPlaylists.map((playlist) => (
-          <PlaylistCard key={playlist.id} playlist={playlist} />
-        ))}
-      </div>
+      {filteredPlaylists.length > 0 ? (
+        <div className="playlist-grid">
+          {filteredPlaylists.map((playlist) => (
+            <PlaylistCard key={playlist.id} playlist={playlist} />
+          ))}
+        </div>
+      ) : (
+        <div className="playlist-empty-state">
+          <p className="playlist-empty-title">No playlists match your search.</p>
+          <p className="playlist-empty-text">Try a different search term or category.</p>
+        </div>
+      )}
     </section>
   )
 }
