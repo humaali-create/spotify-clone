@@ -25,8 +25,53 @@
   outline: 2px solid var(--accent);
 }
 
+.category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.category-pill {
+  background: var(--card);
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.category-pill:hover {
+  background: var(--card-hover);
+}
+
+.category-pill.active {
+  background: var(--accent);
+  color: var(--bg);
+}
+
 .playlist-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 20px;
+}
+
+.playlist-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.playlist-empty-title {
+  font-size: 16px;
+  color: var(--text);
+}
+
+.playlist-empty-text {
+  font-size: 14px;
+  color: var(--text-muted);
 }
