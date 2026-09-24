@@ -53,6 +53,27 @@
   color: var(--bg);
 }
 
+.clear-filters-button {
+  background: none;
+  border: none;
+  padding: 8px 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.clear-filters-button:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+.clear-filters-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 .playlist-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
