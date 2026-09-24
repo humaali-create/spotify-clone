@@ -6,10 +6,21 @@ function PlaylistCard({ playlist }) {
 
   return (
     <Link to={`/playlist/${playlist.id}`} className="playlist-card">
-      <div className="playlist-cover" style={{ background: gradient }} />
-      <span className="playlist-category">{playlist.category}</span>
-      <h3 className="playlist-name">{playlist.name}</h3>
-      <p className="playlist-description">{playlist.description}</p>
+      <div className="playlist-cover-wrap">
+        <div className="playlist-cover" style={{ background: gradient }} />
+        <div className="playlist-play-overlay" aria-hidden="true">
+          <span className="playlist-play-icon">▶</span>
+        </div>
+      </div>
+      <div className="playlist-card-body">
+        <h3 className="playlist-name">{playlist.name}</h3>
+        <p className="playlist-description">{playlist.description}</p>
+        <p className="playlist-meta">
+          <span className="playlist-category">{playlist.category}</span>
+          <span className="playlist-meta-divider" aria-hidden="true">·</span>
+          <span className="playlist-track-count">{playlist.tracks.length} tracks</span>
+        </p>
+      </div>
     </Link>
   )
 }
