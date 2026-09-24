@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { playlists } from '../data/mockData.js'
+import WaveformBackground from '../components/WaveformBackground.jsx'
 import './PlaylistDetail.css'
 
 function PlaylistDetail() {
@@ -21,11 +22,26 @@ function PlaylistDetail() {
   }
 
   const gradient = `linear-gradient(135deg, ${playlist.colors[0]}, ${playlist.colors[1]})`
+  const coverArtwork = playlist.tracks[0]?.artwork
 
   return (
     <section className="playlist-detail">
+      <WaveformBackground
+        seedId={playlist.id}
+        color={playlist.colors[0]}
+        className="playlist-detail-waveform"
+      />
       <header className="playlist-detail-header">
-        <div className="playlist-detail-cover" style={{ background: gradient }} />
+        {coverArtwork ? (
+          <img
+            className="playlist-detail-cover playlist-detail-cover-image"
+            src={coverArtwork}
+            alt=""
+            onLoad={(event) => event.currentTarget.classList.add('is-loaded')}
+          />
+        ) : (
+          <div className="playlist-detail-cover" style={{ background: gradient }} />
+        )}
         <div className="playlist-detail-info">
           <span className="playlist-detail-category">{playlist.category}</span>
           <h1 className="playlist-detail-name">{playlist.name}</h1>
@@ -39,7 +55,17 @@ function PlaylistDetail() {
       <ol className="track-list">
         {playlist.tracks.map((track, index) => (
           <li key={`${track.title}-${index}`} className="track-row">
-            <span className="track-index">{index + 1}</span>
+            <span className="track-index">
+              <span className="track-index-number">{index + 1}</span>
+              <svg
+                className="track-play-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path d="M6 4.5v15l13-7.5-13-7.5Z" fill="currentColor" />
+              </svg>
+            </span>
             <div className="track-info">
               <span className="track-title">{track.title}</span>
               <span className="track-artist">{track.artist}</span>

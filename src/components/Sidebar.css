@@ -16,7 +16,9 @@
 }
 
 .sidebar-link {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   padding: 10px 12px;
   border-radius: 6px;
   font-size: 14px;
@@ -31,7 +33,14 @@
 }
 
 .sidebar-link.active {
-  color: var(--text);
+  color: var(--accent);
+  background: var(--surface-hover);
+}
+
+.sidebar-link-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
 }
 
 .sidebar-library {
@@ -54,7 +63,10 @@
 }
 
 .sidebar-playlist {
-  padding: 9px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 12px;
   border-radius: 6px;
   color: var(--text-muted);
   font-size: 14px;
@@ -65,4 +77,30 @@
 .sidebar-playlist:hover {
   background: var(--surface-hover);
   color: var(--text);
+}
+
+.sidebar-playlist-thumb {
+  width: 36px;
+  height: 36px;
+  min-width: 0;
+  min-height: 0;
+  flex-shrink: 0;
+  border-radius: 4px;
+}
+
+.sidebar-playlist-thumb-image {
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-playlist-thumb-image.is-loaded {
+  opacity: 1;
+}
+
+.sidebar-playlist-name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
