@@ -4,6 +4,27 @@
   margin-bottom: 24px;
 }
 
+.search-input {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  background: var(--card);
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 16px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.search-input:focus {
+  outline: 2px solid var(--accent);
+}
+
 .playlist-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
