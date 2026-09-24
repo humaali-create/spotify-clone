@@ -5,25 +5,28 @@
   padding: 16px 8px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   overflow-y: auto;
 }
 
 .sidebar-section {
   background: var(--surface);
   border-radius: var(--radius);
-  padding: 8px;
+  padding: 10px;
 }
 
 .sidebar-link {
   display: block;
   padding: 10px 12px;
-  border-radius: 4px;
-  font-weight: 600;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
   color: var(--text-muted);
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .sidebar-link:hover {
+  background: var(--surface-hover);
   color: var(--text);
 }
 
@@ -36,9 +39,12 @@
 }
 
 .sidebar-heading {
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--text-muted);
-  padding: 8px 12px;
+  padding: 12px 12px 8px;
 }
 
 .sidebar-playlists {
@@ -48,11 +54,12 @@
 }
 
 .sidebar-playlist {
-  padding: 8px 12px;
-  border-radius: 4px;
+  padding: 9px 12px;
+  border-radius: 6px;
   color: var(--text-muted);
   font-size: 14px;
   cursor: default;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .sidebar-playlist:hover {
