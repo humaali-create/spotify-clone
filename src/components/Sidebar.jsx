@@ -16,12 +16,7 @@ function Sidebar() {
         <ul className="sidebar-playlists">
           {playlists.map((playlist) => (
             <li key={playlist.id} className="sidebar-playlist">
-              <NavLink
-                to={`/playlist/${playlist.id}`}
-                className="sidebar-playlist-link"
-              >
-                {playlist.name}
-              </NavLink>
+              {playlist.name}
             </li>
           ))}
         </ul>
