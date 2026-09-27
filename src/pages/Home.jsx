@@ -1,10 +1,18 @@
 import { useState } from 'react'
 import PlaylistCard from '../components/PlaylistCard.jsx'
 import PlaylistHero from '../components/PlaylistHero.jsx'
+import WaveformBackground from '../components/WaveformBackground.jsx'
 import { playlists } from '../data/mockData.js'
 import './Home.css'
 
 const categories = [...new Set(playlists.map((playlist) => playlist.category))]
+
+function getGreeting() {
+  const hour = new Date().getHours()
+  if (hour < 12) return 'Good morning'
+  if (hour < 18) return 'Good afternoon'
+  return 'Good evening'
+}
 
 function Home() {
   const [query, setQuery] = useState('')
@@ -19,18 +27,34 @@ function Home() {
   return (
     <div className="home">
       <header className="home-header">
-        <h1 className="page-heading">Good afternoon, Huma</h1>
+        <h1 className="page-heading">{getGreeting()}, Huma</h1>
         <p className="page-subheading">What do you feel like listening to?</p>
       </header>
 
       <div className="home-controls">
-        <input
-          type="text"
-          className="search-input"
-          placeholder="Search playlists"
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-        />
+        <div className="search-wrap">
+          <svg
+            className="search-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
+            <path
+              d="M20 20 16.5 16.5"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+          </svg>
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Search playlists"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+          />
+        </div>
         <div className="category-filters">
           <button
             type="button"
@@ -75,12 +99,10 @@ function Home() {
 
         {filteredPlaylists.length > 0 ? (
           <div className="playlist-showcase">
-            <div
+            <WaveformBackground
+              seedId={heroPlaylist.id}
+              color={heroPlaylist.colors[0]}
               className="playlist-ambient-glow"
-              aria-hidden="true"
-              style={{
-                background: `radial-gradient(circle, ${heroPlaylist.colors[0]}, ${heroPlaylist.colors[1]} 60%, transparent 75%)`,
-              }}
             />
             <PlaylistHero playlist={heroPlaylist} />
             {supportingPlaylists.length > 0 && (

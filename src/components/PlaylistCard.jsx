@@ -3,11 +3,21 @@ import './PlaylistCard.css'
 
 function PlaylistCard({ playlist }) {
   const gradient = `linear-gradient(135deg, ${playlist.colors[0]}, ${playlist.colors[1]})`
+  const coverArtwork = playlist.tracks[0]?.artwork
 
   return (
     <Link to={`/playlist/${playlist.id}`} className="playlist-card">
       <div className="playlist-cover-wrap">
-        <div className="playlist-cover" style={{ background: gradient }} />
+        {coverArtwork ? (
+          <img
+            className="playlist-cover playlist-cover-image"
+            src={coverArtwork}
+            alt=""
+            onLoad={(event) => event.currentTarget.classList.add('is-loaded')}
+          />
+        ) : (
+          <div className="playlist-cover" style={{ background: gradient }} />
+        )}
         <div className="playlist-play-overlay" aria-hidden="true">
           <span className="playlist-play-icon">▶</span>
         </div>

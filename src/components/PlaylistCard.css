@@ -16,6 +16,11 @@
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
 }
 
+.playlist-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 .playlist-cover-wrap {
   position: relative;
   overflow: hidden;
@@ -24,7 +29,20 @@
 .playlist-cover {
   width: 100%;
   aspect-ratio: 1;
+  min-width: 0;
+  min-height: 0;
   transition: transform 0.25s ease;
+}
+
+.playlist-cover-image {
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.25s ease;
+}
+
+.playlist-cover-image.is-loaded {
+  opacity: 1;
 }
 
 .playlist-card:hover .playlist-cover {
