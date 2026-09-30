@@ -1,6 +1,5 @@
 import { Link, Route, Routes } from 'react-router-dom'
 import { useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
 import Sidebar from './components/Sidebar.jsx'
 import PlayerBar from './components/PlayerBar.jsx'
 import Home from './pages/Home.jsx'
@@ -35,12 +34,11 @@ function App() {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/playlist/:id" element={<PlaylistDetail />} />
-          <Route path="*" element={<NotFound />} />
           <Route
             path="/playlist/:id"
             element={<PlaylistDetail onSelectTrack={handleSelectTrack} />}
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <PlayerBar
