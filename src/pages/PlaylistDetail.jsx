@@ -31,6 +31,25 @@ function PlaylistDetail() {
         color={playlist.colors[0]}
         className="playlist-detail-waveform"
       />
+      <nav
+        className="playlist-detail-breadcrumb"
+        aria-label="Breadcrumb"
+        style={{ '--playlist-accent': playlist.colors[1] }}
+      >
+        <ol>
+          <li>
+            <Link to="/" className="breadcrumb-link">
+              Home
+            </Link>
+          </li>
+          <li className="breadcrumb-separator" aria-hidden="true">
+            /
+          </li>
+          <li className="breadcrumb-current" aria-current="page">
+            {playlist.name}
+          </li>
+        </ol>
+      </nav>
       <header className="playlist-detail-header">
         {coverArtwork ? (
           <img

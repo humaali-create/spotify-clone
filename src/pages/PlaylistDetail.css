@@ -20,10 +20,55 @@
   -webkit-mask-image: linear-gradient(to bottom, black, transparent);
 }
 
+.playlist-detail-breadcrumb,
 .playlist-detail-header,
 .track-list {
   position: relative;
   z-index: 1;
+}
+
+.playlist-detail-breadcrumb {
+  margin-bottom: 16px;
+  min-width: 0;
+}
+
+.playlist-detail-breadcrumb ol {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  min-width: 0;
+}
+
+.breadcrumb-link {
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.breadcrumb-link:hover,
+.breadcrumb-link:focus-visible {
+  color: var(--playlist-accent, var(--accent));
+  text-decoration: underline;
+}
+
+.breadcrumb-separator {
+  color: var(--text-muted);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.breadcrumb-current {
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 600;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .playlist-detail-header {

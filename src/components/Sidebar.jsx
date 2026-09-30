@@ -1,15 +1,18 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { playlists } from '../data/mockData.js'
 import './Sidebar.css'
 
 function Sidebar() {
+  const location = useLocation()
+  const isDiscoveryActive = location.pathname === '/' || location.pathname.startsWith('/playlist')
+
   return (
     <aside className="sidebar">
       <nav className="sidebar-section">
         <NavLink
           to="/"
           end
-          className={({ isActive }) => `sidebar-link${isActive ? ' active' : ''}`}
+          className={`sidebar-link${isDiscoveryActive ? ' active' : ''}`}
         >
           <svg
             className="sidebar-link-icon"
@@ -37,18 +40,23 @@ function Sidebar() {
             const gradient = `linear-gradient(135deg, ${playlist.colors[0]}, ${playlist.colors[1]})`
 
             return (
-              <li key={playlist.id} className="sidebar-playlist">
-                {thumbnail ? (
-                  <img
-                    className="sidebar-playlist-thumb sidebar-playlist-thumb-image"
-                    src={thumbnail}
-                    alt=""
-                    onLoad={(event) => event.currentTarget.classList.add('is-loaded')}
-                  />
-                ) : (
-                  <div className="sidebar-playlist-thumb" style={{ background: gradient }} />
-                )}
-                <span className="sidebar-playlist-name">{playlist.name}</span>
+              <li key={playlist.id}>
+                <NavLink
+                  to={`/playlist/${playlist.id}`}
+                  className={({ isActive }) => `sidebar-playlist${isActive ? ' active' : ''}`}
+                >
+                  {thumbnail ? (
+                    <img
+                      className="sidebar-playlist-thumb sidebar-playlist-thumb-image"
+                      src={thumbnail}
+                      alt=""
+                      onLoad={(event) => event.currentTarget.classList.add('is-loaded')}
+                    />
+                  ) : (
+                    <div className="sidebar-playlist-thumb" style={{ background: gradient }} />
+                  )}
+                  <span className="sidebar-playlist-name">{playlist.name}</span>
+                </NavLink>
               </li>
             )
           })}
