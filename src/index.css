@@ -100,7 +100,7 @@ button {
 @media (max-width: 640px) {
   .app-layout {
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr var(--player-height);
+    grid-template-rows: minmax(0, min(240px, 35vh)) 1fr var(--player-height);
     grid-template-areas:
       'sidebar'
       'main'

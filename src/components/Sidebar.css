@@ -120,3 +120,18 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+@media (max-width: 640px) {
+  .sidebar-library {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .sidebar-playlists {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 6px;
+  }
+}
