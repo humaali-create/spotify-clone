@@ -28,6 +28,12 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--surface);
+  padding-block: 12px;
+  margin-block: -12px;
 }
 
 .search-wrap {
@@ -53,7 +59,7 @@
   background: var(--surface-hover);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius);
-  padding: 10px 16px 10px 40px;
+  padding: 10px 36px 10px 40px;
   font-size: 14px;
   color: var(--text);
   transition: border-color 0.15s ease;
@@ -73,6 +79,36 @@
   outline-offset: 2px;
 }
 
+.search-clear-button {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.search-clear-button:hover {
+  background: var(--card-hover);
+  color: var(--text);
+}
+
+.search-clear-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 .category-filters {
   display: flex;
   flex-wrap: wrap;
@@ -88,8 +124,8 @@
   font-weight: 600;
   color: var(--text-muted);
   cursor: pointer;
-  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease,
-    transform 0.1s ease;
+  transition: border-color 180ms ease, color 180ms ease, background-color 180ms ease,
+    transform 180ms ease;
 }
 
 .category-chip:hover {

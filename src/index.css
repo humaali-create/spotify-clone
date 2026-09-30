@@ -8,6 +8,7 @@
   --text-muted: #b3b3b3;
   --accent: #1db954;
   --radius: 8px;
+  --radius-sm: 4px;
   --player-height: 88px;
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-subtle-strong: rgba(255, 255, 255, 0.14);
@@ -108,5 +109,16 @@ button {
 
   .main-content {
     padding: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
