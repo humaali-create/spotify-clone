@@ -85,9 +85,21 @@ function PlaylistDetail() {
                 <path d="M6 4.5v15l13-7.5-13-7.5Z" fill="currentColor" />
               </svg>
             </span>
-            <div className="track-info">
-              <span className="track-title">{track.title}</span>
-              <span className="track-artist">{track.artist}</span>
+            <div className="track-info-wrap">
+              {track.artwork ? (
+                <img
+                  className="track-thumb track-thumb-image"
+                  src={track.artwork}
+                  alt=""
+                  onLoad={(event) => event.currentTarget.classList.add('is-loaded')}
+                />
+              ) : (
+                <div className="track-thumb" style={{ background: gradient }} />
+              )}
+              <div className="track-info">
+                <span className="track-title">{track.title}</span>
+                <span className="track-artist">{track.artist}</span>
+              </div>
             </div>
             <span className="track-duration">{track.duration}</span>
           </li>
