@@ -3,7 +3,7 @@ import { playlists } from '../data/mockData.js'
 import WaveformBackground from '../components/WaveformBackground.jsx'
 import './PlaylistDetail.css'
 
-function PlaylistDetail() {
+function PlaylistDetail({ onSelectTrack }) {
   const { id } = useParams()
   const playlist = playlists.find((item) => item.id === id)
 
@@ -73,7 +73,11 @@ function PlaylistDetail() {
 
       <ol className="track-list">
         {playlist.tracks.map((track, index) => (
-          <li key={`${track.title}-${index}`} className="track-row">
+          <li
+            key={`${track.title}-${index}`}
+            className="track-row"
+            onClick={() => onSelectTrack(track)}
+          >
             <span className="track-index">
               <span className="track-index-number">{index + 1}</span>
               <svg

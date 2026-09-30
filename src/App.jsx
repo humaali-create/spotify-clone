@@ -1,4 +1,6 @@
 import { Link, Route, Routes } from 'react-router-dom'
+import { useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
 import Sidebar from './components/Sidebar.jsx'
 import PlayerBar from './components/PlayerBar.jsx'
 import Home from './pages/Home.jsx'
@@ -19,6 +21,14 @@ function NotFound() {
 }
 
 function App() {
+  const [currentTrack, setCurrentTrack] = useState(null)
+  const [isPlaying, setIsPlaying] = useState(false)
+
+  const handleSelectTrack = (track) => {
+    setCurrentTrack(track)
+    setIsPlaying(true)
+  }
+
   return (
     <div className="app-layout">
       <Sidebar />
@@ -27,9 +37,17 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/playlist/:id" element={<PlaylistDetail />} />
           <Route path="*" element={<NotFound />} />
+          <Route
+            path="/playlist/:id"
+            element={<PlaylistDetail onSelectTrack={handleSelectTrack} />}
+          />
         </Routes>
       </main>
-      <PlayerBar />
+      <PlayerBar
+        track={currentTrack}
+        isPlaying={isPlaying}
+        onTogglePlay={() => setIsPlaying((prev) => !prev)}
+      />
     </div>
   )
 }
