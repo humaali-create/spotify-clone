@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import PlaylistCard from '../components/PlaylistCard.jsx'
 import PlaylistHero from '../components/PlaylistHero.jsx'
 import WaveformBackground from '../components/WaveformBackground.jsx'
@@ -17,6 +17,7 @@ function getGreeting() {
 function Home() {
   const [query, setQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState(null)
+  const searchInputRef = useRef(null)
 
   const filteredPlaylists = playlists
     .filter((playlist) => playlist.name.toLowerCase().includes(query.toLowerCase()))
@@ -48,12 +49,26 @@ function Home() {
             />
           </svg>
           <input
+            ref={searchInputRef}
             type="text"
             className="search-input"
             placeholder="Search playlists"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
           />
+          {query !== '' && (
+            <button
+              type="button"
+              className="search-clear-button"
+              aria-label="Clear search"
+              onClick={() => {
+                setQuery('')
+                searchInputRef.current?.focus()
+              }}
+            >
+              ×
+            </button>
+          )}
         </div>
         <div className="category-filters">
           <button

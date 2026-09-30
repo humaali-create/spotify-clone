@@ -31,6 +31,25 @@ function PlaylistDetail({ onSelectTrack }) {
         color={playlist.colors[0]}
         className="playlist-detail-waveform"
       />
+      <nav
+        className="playlist-detail-breadcrumb"
+        aria-label="Breadcrumb"
+        style={{ '--playlist-accent': playlist.colors[1] }}
+      >
+        <ol>
+          <li>
+            <Link to="/" className="breadcrumb-link">
+              Home
+            </Link>
+          </li>
+          <li className="breadcrumb-separator" aria-hidden="true">
+            /
+          </li>
+          <li className="breadcrumb-current" aria-current="page">
+            {playlist.name}
+          </li>
+        </ol>
+      </nav>
       <header className="playlist-detail-header">
         {coverArtwork ? (
           <img
@@ -70,9 +89,21 @@ function PlaylistDetail({ onSelectTrack }) {
                 <path d="M6 4.5v15l13-7.5-13-7.5Z" fill="currentColor" />
               </svg>
             </span>
-            <div className="track-info">
-              <span className="track-title">{track.title}</span>
-              <span className="track-artist">{track.artist}</span>
+            <div className="track-info-wrap">
+              {track.artwork ? (
+                <img
+                  className="track-thumb track-thumb-image"
+                  src={track.artwork}
+                  alt=""
+                  onLoad={(event) => event.currentTarget.classList.add('is-loaded')}
+                />
+              ) : (
+                <div className="track-thumb" style={{ background: gradient }} />
+              )}
+              <div className="track-info">
+                <span className="track-title">{track.title}</span>
+                <span className="track-artist">{track.artist}</span>
+              </div>
             </div>
             <span className="track-duration">{track.duration}</span>
           </li>
