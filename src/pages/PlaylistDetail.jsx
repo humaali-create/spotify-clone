@@ -85,17 +85,6 @@ function PlaylistDetail({ onSelectTrack }) {
               onClick={() => onSelectTrack(track)}
               aria-label={`Play ${track.title} by ${track.artist}`}
             >
-              <span className="track-index">
-                <span className="track-index-number">{index + 1}</span>
-                <svg
-                  className="track-play-icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path d="M6 4.5v15l13-7.5-13-7.5Z" fill="currentColor" />
-                </svg>
-              </span>
               <div className="track-info-wrap">
                 {track.artwork ? (
                   <img
