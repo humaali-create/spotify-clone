@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import Logo from '../components/Logo.jsx'
 import PlaylistCard from '../components/PlaylistCard.jsx'
 import PlaylistHero from '../components/PlaylistHero.jsx'
 import WaveformBackground from '../components/WaveformBackground.jsx'
@@ -50,8 +51,11 @@ function Home() {
   return (
     <div className="home">
       <header className="home-header">
-        <h1 className="page-heading">{getGreeting()}, Huma</h1>
-        <p className="page-subheading">What do you feel like listening to?</p>
+        <div className="home-header-text">
+          <h1 className="page-heading">{getGreeting()}, Huma</h1>
+          <p className="page-subheading">What do you feel like listening to?</p>
+        </div>
+        <Logo />
       </header>
 
       <div className="home-controls">
