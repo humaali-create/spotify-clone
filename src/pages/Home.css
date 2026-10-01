@@ -6,10 +6,19 @@
 
 .home-header {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
   padding-top: 4px;
   animation: fadeInUp 0.4s ease;
+}
+
+.home-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
 }
 
 .page-heading {
