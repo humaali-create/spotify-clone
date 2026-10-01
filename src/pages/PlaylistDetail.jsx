@@ -1,11 +1,16 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { playlists } from '../data/mockData.js'
 import WaveformBackground from '../components/WaveformBackground.jsx'
 import './PlaylistDetail.css'
 
 function PlaylistDetail({ onSelectTrack }) {
   const { id } = useParams()
+  const location = useLocation()
   const playlist = playlists.find((item) => item.id === id)
+  const fromHome =
+    typeof location.state?.from === 'string' && location.state.from.startsWith('/')
+      ? location.state.from
+      : '/'
 
   if (!playlist) {
     return (
@@ -38,7 +43,7 @@ function PlaylistDetail({ onSelectTrack }) {
       >
         <ol>
           <li>
-            <Link to="/" className="breadcrumb-link">
+            <Link to={fromHome} className="breadcrumb-link">
               Home
             </Link>
           </li>

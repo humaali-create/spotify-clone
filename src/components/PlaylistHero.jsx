@@ -12,12 +12,12 @@ function getCollageArtwork(playlist) {
   return Array.from({ length: 4 }, (_, index) => uniqueArtwork[index % uniqueArtwork.length])
 }
 
-function PlaylistHero({ playlist }) {
+function PlaylistHero({ playlist, linkState }) {
   const gradient = `linear-gradient(135deg, ${playlist.colors[0]}, ${playlist.colors[1]})`
   const collageArtwork = getCollageArtwork(playlist)
 
   return (
-    <Link to={`/playlist/${playlist.id}`} className="playlist-hero">
+    <Link to={`/playlist/${playlist.id}`} state={linkState} className="playlist-hero">
       {collageArtwork.length === 4 ? (
         <div className="playlist-hero-collage">
           {collageArtwork.map((src, index) => (
