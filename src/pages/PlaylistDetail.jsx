@@ -78,39 +78,31 @@ function PlaylistDetail({ onSelectTrack }) {
 
       <ol className="track-list">
         {playlist.tracks.map((track, index) => (
-          <li
-            key={`${track.title}-${index}`}
-            className="track-row"
-            onClick={() => onSelectTrack(track)}
-          >
-            <span className="track-index">
-              <span className="track-index-number">{index + 1}</span>
-              <svg
-                className="track-play-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path d="M6 4.5v15l13-7.5-13-7.5Z" fill="currentColor" />
-              </svg>
-            </span>
-            <div className="track-info-wrap">
-              {track.artwork ? (
-                <img
-                  className="track-thumb track-thumb-image"
-                  src={track.artwork}
-                  alt=""
-                  onLoad={(event) => event.currentTarget.classList.add('is-loaded')}
-                />
-              ) : (
-                <div className="track-thumb" style={{ background: gradient }} />
-              )}
-              <div className="track-info">
-                <span className="track-title">{track.title}</span>
-                <span className="track-artist">{track.artist}</span>
+          <li key={`${track.title}-${index}`}>
+            <button
+              type="button"
+              className="track-row"
+              onClick={() => onSelectTrack(track)}
+              aria-label={`Play ${track.title} by ${track.artist}`}
+            >
+              <div className="track-info-wrap">
+                {track.artwork ? (
+                  <img
+                    className="track-thumb track-thumb-image"
+                    src={track.artwork}
+                    alt=""
+                    onLoad={(event) => event.currentTarget.classList.add('is-loaded')}
+                  />
+                ) : (
+                  <div className="track-thumb" style={{ background: gradient }} />
+                )}
+                <div className="track-info">
+                  <span className="track-title">{track.title}</span>
+                  <span className="track-artist">{track.artist}</span>
+                </div>
               </div>
-            </div>
-            <span className="track-duration">{track.duration}</span>
+              <span className="track-duration">{track.duration}</span>
+            </button>
           </li>
         ))}
       </ol>

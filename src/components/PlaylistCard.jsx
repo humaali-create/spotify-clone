@@ -4,9 +4,15 @@ import './PlaylistCard.css'
 function PlaylistCard({ playlist, linkState }) {
   const gradient = `linear-gradient(135deg, ${playlist.colors[0]}, ${playlist.colors[1]})`
   const coverArtwork = playlist.tracks[0]?.artwork
+  const trackCountLabel = `${playlist.tracks.length} tracks`
 
   return (
-    <Link to={`/playlist/${playlist.id}`} state={linkState} className="playlist-card">
+    <Link
+      to={`/playlist/${playlist.id}`}
+      state={linkState}
+      className="playlist-card"
+      aria-label={`${playlist.name}, ${trackCountLabel}, ${playlist.category}`}
+    >
       <div className="playlist-cover-wrap">
         {coverArtwork ? (
           <img
@@ -21,14 +27,15 @@ function PlaylistCard({ playlist, linkState }) {
         <div className="playlist-play-overlay" aria-hidden="true">
           <span className="playlist-play-icon">▶</span>
         </div>
+        <div className="playlist-card-label" aria-hidden="true">
+          <span className="playlist-card-label-name">{playlist.name}</span>
+          <span className="playlist-card-label-count">{trackCountLabel}</span>
+        </div>
       </div>
       <div className="playlist-card-body">
-        <h3 className="playlist-name">{playlist.name}</h3>
         <p className="playlist-description">{playlist.description}</p>
         <p className="playlist-meta">
           <span className="playlist-category">{playlist.category}</span>
-          <span className="playlist-meta-divider" aria-hidden="true">·</span>
-          <span className="playlist-track-count">{playlist.tracks.length} tracks</span>
         </p>
       </div>
     </Link>
