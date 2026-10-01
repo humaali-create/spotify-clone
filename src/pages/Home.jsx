@@ -1,4 +1,5 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import Logo from '../components/Logo.jsx'
 import PlaylistCard from '../components/PlaylistCard.jsx'
 import PlaylistHero from '../components/PlaylistHero.jsx'
@@ -16,15 +17,36 @@ function getGreeting() {
 }
 
 function Home() {
-  const [query, setQuery] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState(null)
+  const [searchParams, setSearchParams] = useSearchParams()
   const searchInputRef = useRef(null)
+
+  const query = searchParams.get('q') ?? ''
+  const rawCategory = searchParams.get('category')
+  const selectedCategory = categories.includes(rawCategory) ? rawCategory : null
+
+  const updateParams = (updates) => {
+    setSearchParams(
+      (prev) => {
+        const next = new URLSearchParams(prev)
+        Object.entries(updates).forEach(([key, value]) => {
+          if (value === null || value === '') {
+            next.delete(key)
+          } else {
+            next.set(key, value)
+          }
+        })
+        return next
+      },
+      { replace: true },
+    )
+  }
 
   const filteredPlaylists = playlists
     .filter((playlist) => playlist.name.toLowerCase().includes(query.toLowerCase()))
     .filter((playlist) => !selectedCategory || playlist.category === selectedCategory)
 
   const [heroPlaylist, ...supportingPlaylists] = filteredPlaylists
+  const linkState = { from: `/${searchParams.toString() ? `?${searchParams.toString()}` : ''}` }
 
   return (
     <div className="home">
@@ -58,7 +80,7 @@ function Home() {
             className="search-input"
             placeholder="Search playlists"
             value={query}
-            onChange={(event) => setQuery(event.target.value)}
+            onChange={(event) => updateParams({ q: event.target.value })}
           />
           {query !== '' && (
             <button
@@ -66,7 +88,7 @@ function Home() {
               className="search-clear-button"
               aria-label="Clear search"
               onClick={() => {
-                setQuery('')
+                updateParams({ q: null })
                 searchInputRef.current?.focus()
               }}
             >
@@ -79,7 +101,7 @@ function Home() {
             type="button"
             className={`category-chip${selectedCategory === null ? ' active' : ''}`}
             aria-pressed={selectedCategory === null}
-            onClick={() => setSelectedCategory(null)}
+            onClick={() => updateParams({ category: null })}
           >
             All
           </button>
@@ -89,7 +111,7 @@ function Home() {
               type="button"
               className={`category-chip${selectedCategory === category ? ' active' : ''}`}
               aria-pressed={selectedCategory === category}
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => updateParams({ category })}
             >
               {category}
             </button>
@@ -99,10 +121,7 @@ function Home() {
               type="button"
               className="clear-filters-button"
               aria-label="Clear all search and category filters"
-              onClick={() => {
-                setQuery('')
-                setSelectedCategory(null)
-              }}
+              onClick={() => updateParams({ q: null, category: null })}
             >
               Clear all
             </button>
@@ -123,11 +142,11 @@ function Home() {
               color={heroPlaylist.colors[0]}
               className="playlist-ambient-glow"
             />
-            <PlaylistHero playlist={heroPlaylist} />
+            <PlaylistHero playlist={heroPlaylist} linkState={linkState} />
             {supportingPlaylists.length > 0 && (
               <div className="playlist-grid">
                 {supportingPlaylists.map((playlist) => (
-                  <PlaylistCard key={playlist.id} playlist={playlist} />
+                  <PlaylistCard key={playlist.id} playlist={playlist} linkState={linkState} />
                 ))}
               </div>
             )}
