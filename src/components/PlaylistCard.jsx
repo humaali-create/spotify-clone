@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom'
 import './PlaylistCard.css'
 
-function PlaylistCard({ playlist }) {
+function PlaylistCard({ playlist, linkState }) {
   const gradient = `linear-gradient(135deg, ${playlist.colors[0]}, ${playlist.colors[1]})`
   const coverArtwork = playlist.tracks[0]?.artwork
 
   return (
-    <Link to={`/playlist/${playlist.id}`} className="playlist-card">
+    <Link to={`/playlist/${playlist.id}`} state={linkState} className="playlist-card">
       <div className="playlist-cover-wrap">
         {coverArtwork ? (
           <img
