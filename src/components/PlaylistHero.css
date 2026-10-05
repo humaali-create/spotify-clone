@@ -134,7 +134,7 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--accent-strong);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -147,7 +147,7 @@
 }
 
 .playlist-hero-play-icon {
-  color: var(--bg);
+  color: var(--text);
   font-size: 20px;
   margin-left: 3px;
 }

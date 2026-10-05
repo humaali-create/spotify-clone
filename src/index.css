@@ -1,12 +1,13 @@
 :root {
-  --bg: #000;
-  --surface: #121212;
-  --surface-hover: #1f1f1f;
-  --card: #181818;
-  --card-hover: #282828;
+  --bg: #0d0b1a;
+  --surface: #15112a;
+  --surface-hover: #221c3f;
+  --card: #171331;
+  --card-hover: #241d44;
   --text: #fff;
-  --text-muted: #b3b3b3;
-  --accent: #1db954;
+  --text-muted: #b6aed0;
+  --accent: #a78bfa;
+  --accent-strong: #7c3aed;
   --radius: 8px;
   --radius-sm: 4px;
   --player-height: 88px;
