@@ -1,6 +1,7 @@
 import { Link, useLocation, useParams } from 'react-router-dom'
 import { playlists } from '../data/mockData.js'
 import WaveformBackground from '../components/WaveformBackground.jsx'
+import PlaylistIllustration from '../components/PlaylistIllustration.jsx'
 import './PlaylistDetail.css'
 
 function PlaylistDetail({ onSelectTrack }) {
@@ -55,6 +56,7 @@ function PlaylistDetail({ onSelectTrack }) {
           </li>
         </ol>
       </nav>
+      <PlaylistIllustration className="playlist-detail-banner" />
       <header className="playlist-detail-header">
         {coverArtwork ? (
           <img
